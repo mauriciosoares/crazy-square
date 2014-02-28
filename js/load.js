@@ -11,7 +11,9 @@ gameStates.Load = function() {
 
 gameStates.Load.prototype = {
     preload: function() {
+        // Adds all images
         this.game.load.image('hero', 'assets/hero.jpg');
+        this.game.load.image('floor', 'assets/floor.jpg');
     },
 
     create: function() {
