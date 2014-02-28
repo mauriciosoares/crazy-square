@@ -26,13 +26,13 @@ gameStates.Play.prototype = {
         });
 
         // loops though all map to build the blocks
-        var yLength = map.length;
+        var yLength = map.matrix.length;
         for(y = 0; y < yLength; y += 1) {
 
-            var xLength = map[y].length;
+            var xLength = map.matrix[y].length;
             for(x = 0; x < xLength; x += 1) {
 
-                if(map[y][x] == 1) {
+                if(map.matrix[y][x] == 1) {
                     this.floor.create(x * 30, y * 30, 'floor');
                 }
             }
