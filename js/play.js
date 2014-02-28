@@ -16,8 +16,6 @@ gameStates.Play.prototype = {
         this.hero = this.game.add.sprite(-50, -50, 'hero');
         this.hero.body.gravity.y = 1000;
 
-        this.initHero();
-
         // Draws the map
         this.drawMap(stages.maps[stages.current]);
     },
@@ -45,7 +43,6 @@ gameStates.Play.prototype = {
                 var floor;
                 if(map.matrix[y][x] == 1) {
                      floor = this.floor.create(x * 30, y * 30, 'floor');
-                     console.log(floor);
                      floor.body.immovable = true;
                 }
             }
