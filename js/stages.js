@@ -24,7 +24,8 @@ var stages = {
             ],
             heroPosition: {
                 x: 0,
-                y: 60
+                y: 60,
+                direction: 200
             }
         }
     },

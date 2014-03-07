@@ -22,8 +22,7 @@ gameStates.Play.prototype = {
         // Draws the map
         this.drawMap(stages.maps[stages.current]);
 
-        // some conditions
-        this.direction = 200;
+        this.direction = 0;
     },
 
     update: function() {
@@ -43,12 +42,16 @@ gameStates.Play.prototype = {
     },
 
     killHero: function() {
-        console.log('kill hero');
+        this.initHero();
     },
 
     initHero: function() {
+        this.direction = 0;
         this.hero.x = stages.maps[stages.current].heroPosition.x;
         this.hero.y = stages.maps[stages.current].heroPosition.y;
+        setTimeout(function() {
+            this.direction = stages.maps[stages.current].heroPosition.direction;
+        }.bind(this), 1000);
     },
 
     jumpHero: function() {
