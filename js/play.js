@@ -16,6 +16,9 @@ gameStates.Play.prototype = {
         var spaceKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         spaceKey.onDown.add(this.jumpHero, this);
 
+        // when hero leave bounds
+        this.hero.events.onOutOfBounds.add(this.killHero, this);
+
         // Draws the map
         this.drawMap(stages.maps[stages.current]);
 
@@ -37,6 +40,10 @@ gameStates.Play.prototype = {
         }else if(hero.body.touching.left) {
             this.direction = 200;
         }
+    },
+
+    killHero: function() {
+        console.log('kill hero');
     },
 
     initHero: function() {
