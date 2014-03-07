@@ -21,7 +21,6 @@ gameStates.Play.prototype = {
 
         // some conditions
         this.direction = 200;
-        console.log(this.hero.body.touching);
     },
 
     update: function() {
@@ -46,7 +45,9 @@ gameStates.Play.prototype = {
     },
 
     jumpHero: function() {
-        this.hero.body.velocity.y = -430;
+        if(this.hero.body.touching.down) {
+            this.hero.body.velocity.y = -420;
+        }
     },
 
     drawMap: function(map) {
@@ -61,9 +62,10 @@ gameStates.Play.prototype = {
             var xLength = map.matrix[y].length;
             for(x = 0; x < xLength; x += 1) {
                 var floor;
-                if(map.matrix[y][x] == 1) {
-                     floor = this.floor.create(x * 30, y * 30, 'floor');
-                     floor.body.immovable = true;
+                if(map.matrix[y][x] !== 0) {
+                    floor = this.floor.create(x * 30, y * 30, 'floor');
+                    floor.body.immovable = true;
+                    floor.scale.x = map.matrix[y][x];
                 }
             }
         }
