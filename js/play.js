@@ -10,6 +10,10 @@ gameStates.Play.prototype = {
     this.floor = this.game.add.group();
     this.enemy = this.game.add.group();
 
+    // configs Win
+    this.win = this.game.add.sprite(-50, -50, 'win');
+    this.win.body.immovable = true;
+
     // configs hero
     this.hero = this.game.add.sprite(-50, -50, 'hero');
     this.hero.body.gravity.y = 1000;
@@ -77,26 +81,33 @@ gameStates.Play.prototype = {
       enemy.kill();
     });
 
+    if(this.win) {
+      console.log(this.win);
+    }
+
     // loops though all map to build the blocks
     var yLength = map.matrix.length;
     for(y = 0; y < yLength; y += 1) {
 
       var xLength = map.matrix[y].length;
       for(x = 0; x < xLength; x += 1) {
-        var floor, win;
+        var floor,
+          win,
+          posX = x * 30,
+          posY = y * 30;
 
         if(typeof map.matrix[y][x] == 'number') {
           if(map.matrix[y][x] !== 0) {
-            floor = this.floor.create(x * 30, y * 30, 'floor');
+            floor = this.floor.create(posX, posY, 'floor');
             floor.body.immovable = true;
             floor.scale.x = map.matrix[y][x];
           }
         } else {
           if(map.matrix[y][x] == 'W') {
-            this.win = this.game.add.sprite(x * 30, y * 30, 'win');
-            this.win.body.immovable = true;
+            this.win.x = posX;
+            this.win.y = posY;
           } else if(map.matrix[y][x] == 'E') {
-            enemy = this.enemy.create(x * 30, 20 + (y * 30), 'enemy');
+            enemy = this.enemy.create(posX, 20 + (posY), 'enemy');
             enemy.body.immovable = true;
           }
         }
@@ -107,6 +118,7 @@ gameStates.Play.prototype = {
   },
 
   nextStage: function() {
-
+    stages.current += 1;
+    this.drawMap(stages.maps[stages.current]);
   }
 };
