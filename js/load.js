@@ -14,6 +14,8 @@ gameStates.Load.prototype = {
     // Adds all images
     this.game.load.image('hero', 'assets/hero.jpg');
     this.game.load.image('floor', 'assets/floor.jpg');
+    this.game.load.image('win', 'assets/win.png');
+    this.game.load.image('enemy', 'assets/enemy.png');
   },
 
   create: function() {
