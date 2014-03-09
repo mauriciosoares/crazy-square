@@ -47,9 +47,9 @@ gameStates.Play.prototype = {
     // invert direction according to touch event
     if(hero.body.touching.right) {
       // makes hero go to left
-      this.direction = -200;
+      this.direction = -150;
     }else if(hero.body.touching.left) {
-      this.direction = 200;
+      this.direction = 150;
     }
   },
 
@@ -58,7 +58,11 @@ gameStates.Play.prototype = {
   },
 
   initHero: function() {
-    this.direction = 0;
+    // little trick
+    setTimeout(function() {
+      this.direction = 0;
+    }.bind(this), 1);
+
     this.hero.x = stages.maps[stages.current].heroPosition.x;
     this.hero.y = stages.maps[stages.current].heroPosition.y;
     setTimeout(function() {
@@ -82,7 +86,7 @@ gameStates.Play.prototype = {
     });
 
     if(this.win) {
-      console.log(this.win);
+
     }
 
     // loops though all map to build the blocks
