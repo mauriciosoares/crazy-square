@@ -85,10 +85,6 @@ gameStates.Play.prototype = {
       enemy.kill();
     });
 
-    if(this.win) {
-
-    }
-
     // loops though all map to build the blocks
     var yLength = map.matrix.length;
     for(y = 0; y < yLength; y += 1) {
